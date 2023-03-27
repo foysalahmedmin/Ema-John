@@ -8,7 +8,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1 className='bg-red-500'>Ema-John</h1>
+      <h1 className='bg-primary'>Ema-John</h1>
     </div>
   )
 }
