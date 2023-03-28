@@ -10,7 +10,6 @@ function App() {
   const showCountUpdate = () => {
     const updateCount = showProduct + 6 ;
     setShowCount(updateCount);
-    console.log(showProduct);
   }
 
   return (
