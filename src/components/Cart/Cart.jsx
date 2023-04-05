@@ -21,11 +21,11 @@ const Cart = (props) => {
             <p>
                 Select Cart Item: {cartQuantity}
             </p>
-            <p>Total Price: $ {totalPrice}</p>
-            <p>Total Shipping Charge: $ {shipping}</p>
-            <p>Tax: $ {tax} </p>
+            <p>Total Price: ${totalPrice.toLocaleString()}</p>
+            <p>Total Shipping Charge: ${shipping.toLocaleString()}</p>
+            <p>Tax: ${tax.toLocaleString()} </p>
             <h3 className=' text-2xl my-5'>
-                Grand Total: : $ {totalPrice + shipping + shipping + tax }
+                Grand Total: : ${(totalPrice + shipping + shipping + tax).toLocaleString()}
             </h3>
         </div>
     );
