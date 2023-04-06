@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import {addToDb, getShoppingCart } from '../../utilities/localStorageManage';
+import {addToDb, deleteShoppingCart, getShoppingCart } from '../../utilities/localStorageManage';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import Cart from '../Cart/Cart';
 import Product from '../Product/Product';
+import { Link } from 'react-router-dom';
 
 const Shop = () => {
     const [showProduct, setShowCount] = useState(12);
     const [products, setProducts] = useState([])
-    const [cartProducts, setCurtProduct] = useState([]);
+    const [cartProducts, setCartProduct] = useState([]);
     useEffect(()=>{
         fetch("products.json")
         .then(res => res.json())
@@ -28,7 +31,7 @@ const Shop = () => {
                 saveCart.push(cartProduct);
             }
         }
-        setCurtProduct(saveCart);
+        setCartProduct(saveCart);
     }
 
     useEffect(() =>{
@@ -47,15 +50,20 @@ const Shop = () => {
             const restCartProducts = cartProducts.filter((pd)=> pd.id !== data.id);
             newData = [...restCartProducts, data]
         }
-        // setCurtProduct(updateCart);
-        setCurtProduct(newData);
+        // setCartProduct(updateCart);
+        setCartProduct(newData);
         addToDb(data.id)
         // show()
     }
 
+    const cartClearHandler = () => {
+        setCartProduct([]);
+        deleteShoppingCart();
+    }
+
     return (
         <section className='mt-[85px]'>
-            <div className="container mx-auto flex">
+            <div className="container px-[1.5%] mx-auto flex gap-4 justify-between">
                 <div>
                     <h1 className='text-center text-3xl font-bold pt-7'>Products</h1>
                     <div className='flex flex-wrap gap-12 justify-center my-12'>
@@ -68,12 +76,14 @@ const Shop = () => {
                         }
                     </div>
                     <div className='text-center'>
-                        <button className='text-center bg-[#FFE0B3] bottom-0 p-2  
+                        <button className='text-black border-0 px-7 btn btn-primary bg-[#FFE0B3] bottom-0 p-2  
             mb-12 hover:bg-orange-500' onClick={showCountUpdate}>Show More</button>
                     </div>
                 </div>
                 <div className='bg-[#FFE0B3]'>
-                    <Cart cartProduct = {cartProducts}></Cart>
+                    <Cart cartProduct = {cartProducts} cartClearHandler = {cartClearHandler}> 
+                        <Link to="/orders"><button className='btn btn-warning w-full text-xl font-semibold border-0 text-white flex justify-between'><span className='mr-3'>Review Order</span> <FontAwesomeIcon icon={faArrowRight} /></button></Link>
+                    </Cart>
                 </div>
             </div>
         </section>
