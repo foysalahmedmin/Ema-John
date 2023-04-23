@@ -13,6 +13,7 @@ import Inventory from './components/Inventory/Inventory';
 import LogIn from './components/LogIn/LogIn';
 import cartProductsLoader from './components/Loaders/Loaders';
 import Checkout from './components/Checkout/Checkout';
+import SingUp from './components/SingUp/SingUp';
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
       {
         path: "checkout",
         element: <Checkout></Checkout>
+      },
+      {
+        path: "singUp",
+        element: <SingUp />
       }
     ]
   },

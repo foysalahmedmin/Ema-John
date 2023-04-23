@@ -1,4 +1,5 @@
 import React from 'react';
+import RatingStar from '../RatingStar/RatingStar';
 
 const Product = (props) => {
     const { id, name, price, img, seller, ratings, stock } = props.products;
@@ -13,6 +14,9 @@ const Product = (props) => {
             <div className="p-4 pb-4 mt-auto">
                 <p>Manufacturer: {seller} </p>
                 <p>Rating: {ratings || "0"} star</p>
+                {
+                    <RatingStar rating = {ratings}></RatingStar>
+                }
             </div>
             <button onClick={() => handleAddToCart(props.products)} className='text-black btn border-0 rounded-none w-full text-center bg-[#FFE0B3] bottom-0 p-2 hover:bg-orange-500'>Add to Card</button>
         </div>
