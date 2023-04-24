@@ -14,6 +14,8 @@ import LogIn from './components/LogIn/LogIn';
 import cartProductsLoader from './components/Loaders/Loaders';
 import Checkout from './components/Checkout/Checkout';
 import SingUp from './components/SingUp/SingUp';
+import AuthProvider from './provider/AuthProvider';
+import PrivateRout from './components/PrivateRout/PrivateRout';
 
 const router = createBrowserRouter([
   {
@@ -28,7 +30,6 @@ const router = createBrowserRouter([
         path: "orders",
         element: <Orders></Orders>,
         loader: cartProductsLoader //() => fetch('products.json')
-        
       },
       {
         path: "inventory",
@@ -40,7 +41,7 @@ const router = createBrowserRouter([
       },
       {
         path: "checkout",
-        element: <Checkout></Checkout>
+        element: <PrivateRout> <Checkout></Checkout> </PrivateRout>
       },
       {
         path: "singUp",
@@ -53,6 +54,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </React.StrictMode>,
 )

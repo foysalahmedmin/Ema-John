@@ -62,7 +62,7 @@ const Shop = () => {
     }
 
     return (
-        <section className='pt-[85px]'>
+        <section>
             <div className="container px-[1.5%] mx-auto flex gap-4 justify-between">
                 <div>
                     <h1 className='text-center text-3xl font-bold pt-7'>Products</h1>

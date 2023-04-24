@@ -6,7 +6,9 @@ const Home = () => {
     return (
         <div>
             <Header></Header>
-            <Outlet></Outlet>
+            <main className='mt-[85px]'>
+                <Outlet></Outlet>
+            </main>
         </div>
     );
 };
